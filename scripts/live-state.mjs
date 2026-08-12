@@ -1,4 +1,4 @@
-import { readFile, readdir, stat, writeFile, mkdir } from 'node:fs/promises'
+import { access, readFile, readdir, stat, writeFile, mkdir } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -147,7 +147,14 @@ export async function buildLiveState() {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const output = path.join(appRoot, 'public', 'data', 'live-state.json')
   await mkdir(path.dirname(output), { recursive: true })
-  const state = await buildLiveState()
-  await writeFile(output, `${JSON.stringify(state, null, 2)}\n`, 'utf8')
-  console.log(`Live state: ${state.summary.ideas} ideas, ${state.summary.activeTasks} tasks -> ${output}`)
+  try {
+    await access(path.join(companyRoot, 'mkt', 'research', 'content-opportunities-2026-08-12.md'))
+    const state = await buildLiveState()
+    await writeFile(output, `${JSON.stringify(state, null, 2)}\n`, 'utf8')
+    console.log(`Live state: ${state.summary.ideas} ideas, ${state.summary.activeTasks} tasks -> ${output}`)
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error
+    await access(output)
+    console.log(`Company OS workspace is unavailable; preserving published snapshot -> ${output}`)
+  }
 }
