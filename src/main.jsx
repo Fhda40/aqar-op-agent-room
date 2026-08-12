@@ -55,7 +55,8 @@ const initialAgents = [
     id: 'researcher', name: 'باحث المحتوى', title: 'تابع لإدارة التسويق', image: '/assets/researcher.png', tone: 'sage',
     x: 66, y: 77, size: 'small', status: 'يبحث الآن', progress: 100,
     task: 'اكتملت 10 فرص محتوى موثقة لمشروع عقار أوب',
-    files: ['فرص المحتوى', 'المصادر الرسمية'], notes: [], reports: []
+    files: ['فرص المحتوى', 'المصادر الرسمية'],
+    notes: [{ text: 'مسودة البحث', icon: FileText, x: 106, y: 12, tilt: 5 }], reports: []
   }
 ]
 
@@ -82,7 +83,6 @@ function Clock() {
 function Note({ item }) {
   const Icon = item.icon
   return <button className="orbit-note" style={{ '--note-x': `${item.x}px`, '--note-y': `${item.y}px`, '--tilt': `${item.tilt}deg` }}>
-    <i className="push-pin" />
     <Icon size={16} strokeWidth={1.55} />
     <span>{item.text}</span>
   </button>
@@ -92,7 +92,8 @@ function Agent({ agent, active, onSelect }) {
   return <div className={`agent agent-${agent.size} tone-${agent.tone}`} style={{ left: `${agent.x}%`, top: `${agent.y}%` }}>
     <div className="orbit-line" aria-hidden="true" />
     <button className={`agent-portrait ${active ? 'active' : ''}`} onClick={() => onSelect(agent.id)} aria-pressed={active}>
-      <img src={agent.image} alt="" />
+      <img className="agent-art" src={agent.image} alt="" />
+      <img className="agent-ring" src="/assets/agent-ring.png" alt="" />
       <span className="agent-copy"><strong>{agent.name}</strong><small>{agent.title}</small></span>
     </button>
     {agent.notes.map(note => <Note key={note.text} item={note} />)}
@@ -119,7 +120,6 @@ function ProjectSeal() {
 function Inspector({ agent, agents, onClose }) {
   const reports = agent.reports.map(id => agents.find(item => item.id === id)).filter(Boolean)
   return <aside className="notebook" aria-label={`تفاصيل ${agent.name}`}>
-    <div className="spiral" aria-hidden="true">{Array.from({ length: 13 }, (_, index) => <i key={index} />)}</div>
     <button className="close-inspector" onClick={onClose} aria-label="إغلاق"><X size={20} /></button>
     <div className="notebook-title"><span>الوكيل المحدد</span><h2>{agent.name}</h2><small>{agent.title}</small></div>
     <section>
