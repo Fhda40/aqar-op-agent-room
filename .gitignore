@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.vercel/
+*.local
+public/agent-room-bg.mp4
+.vite-*.log
+design/discarded-*
+design/*-implementation.png
