@@ -4,8 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "npm run sync:live && vite",
+    "sync:live": "node scripts/live-state.mjs",
+    "build": "npm run sync:live && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

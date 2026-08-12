@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
   Archive, BarChart3, Bot, Building2, CalendarDays, CheckCircle2,
-  Clock3, FileSpreadsheet, FileText, FolderOpen, Home, LayoutList,
-  Lightbulb, Map, Megaphone, Menu, Plus, ShieldAlert, Target,
+  Clock3, Database, FileSpreadsheet, FileText, FolderOpen, Home, LayoutList,
+  Lightbulb, Map, Menu, Plus, Radio, RefreshCw, ShieldAlert, Target,
   Users, X
 } from 'lucide-react'
 import './styles.css'
@@ -61,15 +61,45 @@ const initialAgents = [
 ]
 
 const navigation = [
-  ['الغرفة', Home], ['الوكلاء', Users], ['المهام', CheckCircle2],
-  ['التقارير', BarChart3], ['الذاكرة', Archive]
+  { id: 'room', label: 'الغرفة', icon: Home },
+  { id: 'agents', label: 'الوكلاء', icon: Users },
+  { id: 'tasks', label: 'المهام', icon: CheckCircle2 },
+  { id: 'live', label: 'البث الحي', icon: Radio },
+  { id: 'memory', label: 'الذاكرة', icon: Archive }
 ]
 
-const activities = [
-  { text: 'تم إنشاء 4 أفكار في Buffer', time: 'منذ 15 دقيقة', icon: Lightbulb },
-  { text: 'أُرسل تقرير لمدير المشروع', time: 'منذ 28 دقيقة', icon: FileText },
-  { text: 'اكتملت 10 فرص محتوى', time: 'منذ 42 دقيقة', icon: Target }
-]
+const relativeTime = value => {
+  if (!value) return 'غير معروف'
+  const minutes = Math.max(0, Math.round((Date.now() - new Date(value).getTime()) / 60000))
+  if (minutes < 1) return 'الآن'
+  if (minutes < 60) return `منذ ${minutes} دقيقة`
+  const hours = Math.round(minutes / 60)
+  return hours < 24 ? `منذ ${hours} ساعة` : `منذ ${Math.round(hours / 24)} يوم`
+}
+
+function useLiveState() {
+  const [data, setData] = useState(null)
+  const [status, setStatus] = useState('connecting')
+  const [error, setError] = useState('')
+  const refresh = async () => {
+    setStatus(current => current === 'ready' ? 'refreshing' : 'connecting')
+    try {
+      const response = await fetch(`/api/live-state?t=${Date.now()}`, { cache: 'no-store' })
+      const result = response.ok ? await response.json() : await fetch(`/data/live-state.json?t=${Date.now()}`, { cache: 'no-store' }).then(item => item.json())
+      setData(result); setStatus('ready'); setError('')
+    } catch (reason) {
+      setStatus('error'); setError(reason instanceof Error ? reason.message : 'تعذر التحديث')
+    }
+  }
+  useEffect(() => {
+    refresh()
+    const timer = setInterval(refresh, 20000)
+    const onVisible = () => { if (document.visibilityState === 'visible') refresh() }
+    document.addEventListener('visibilitychange', onVisible)
+    return () => { clearInterval(timer); document.removeEventListener('visibilitychange', onVisible) }
+  }, [])
+  return { data, status, error, refresh }
+}
 
 function Clock() {
   const [now, setNow] = useState(new Date())
@@ -108,12 +138,13 @@ function RelationshipLines() {
   </div>
 }
 
-function ProjectSeal() {
+function ProjectSeal({ live, status, onRefresh }) {
   return <div className="project-seal">
     <Building2 size={17} />
-    <span>المشروع النشط</span>
+    <span className={`live-dot ${status}`}><i />{status === 'error' ? 'غير متصل' : 'مباشر'}</span>
     <strong>{project.name}</strong>
-    <em>{project.status}</em>
+    <button onClick={onRefresh} aria-label="تحديث البيانات"><RefreshCw size={14} className={status === 'refreshing' ? 'spinning' : ''} /></button>
+    <small>{relativeTime(live?.servedAt || live?.generatedAt)}</small>
   </div>
 }
 
@@ -161,6 +192,47 @@ function ListView({ agents, selected, onSelect }) {
   </div>
 }
 
+function LiveRow({ icon: Icon = FileText, title, meta, status, source, onClick }) {
+  return <button className="live-row" onClick={onClick}>
+    <span className="live-row-icon"><Icon size={22} strokeWidth={1.45} /></span>
+    <span className="live-row-copy"><b>{title}</b><small>{meta}</small></span>
+    {status && <em>{status}</em>}
+    {source && <code>{source}</code>}
+  </button>
+}
+
+function LiveDesk({ data, section }) {
+  const [ideaType, setIdeaType] = useState('marketing')
+  const [selectedItem, setSelectedItem] = useState(null)
+  if (!data) return <div className="live-desk loading-paper"><RefreshCw className="spinning" /><h2>تجميع حالة Company OS…</h2></div>
+
+  const ideas = ideaType === 'marketing' ? data.ideas : data.developmentIdeas
+  let title = 'البث الحي'
+  let description = 'أفكار وموافقات ونشاط موثّق من ملفات Company OS.'
+  let content = <>
+    <div className="desk-switch"><button className={ideaType === 'marketing' ? 'active' : ''} onClick={() => setIdeaType('marketing')}>أفكار تسويقية <b>{data.summary.ideas}</b></button><button className={ideaType === 'development' ? 'active' : ''} onClick={() => setIdeaType('development')}>تطوير المشروع <b>{data.developmentIdeas.length}</b></button></div>
+    <div className="live-list">{ideas.map(idea => <LiveRow key={idea.id} icon={ideaType === 'marketing' ? Lightbulb : Target} title={idea.title} meta={`${idea.owner} · ثقة ${Math.round(idea.confidence * 100)}%`} status={idea.status} source={idea.sourceRef} onClick={() => setSelectedItem(idea)} />)}</div>
+  </>
+
+  if (section === 'tasks') {
+    title = 'المهام والموافقات'
+    description = `${data.tasks.length} مهام مسجلة و${data.approvals.length} موافقات بانتظار أصحابها.`
+    content = <div className="desk-columns"><section><h3>المهام</h3>{data.tasks.map(task => <LiveRow key={task.id} icon={CheckCircle2} title={task.title} meta={`${task.owner} · ${task.sourceRef}`} status={task.status} />)}</section><section><h3>بوابة الموافقات</h3>{data.approvals.map(item => <LiveRow key={item.id} icon={ShieldAlert} title={item.title} meta={item.sourceRef} status={item.status} />)}</section></div>
+  }
+  if (section === 'memory') {
+    title = 'المصادر المتصلة'
+    description = 'كل رقم وفكرة في الغرفة يرجع إلى مصدر مسجل وتاريخ تحديث.'
+    content = <div className="source-grid">{data.sources.map(source => <article key={source.id}><Database size={25} /><span><b>{source.label}</b><code>{source.path}</code></span><em>{source.status}</em><small>{relativeTime(source.updatedAt)}</small></article>)}</div>
+  }
+
+  return <div className="live-desk">
+    <header><span><Radio size={20} /><i />تحديث كل 20 ثانية</span><h2>{title}</h2><p>{description}</p></header>
+    <div className="summary-cards"><article><b>{data.summary.ideas}</b><span>فكرة تسويقية</span></article><article><b>{data.summary.readyForReview}</b><span>جاهزة للمراجعة</span></article><article><b>{data.summary.activeTasks}</b><span>مهام نشطة</span></article><article><b>{data.summary.pendingApprovals}</b><span>موافقات معلقة</span></article></div>
+    {content}
+    {selectedItem && <aside className="idea-detail"><button onClick={() => setSelectedItem(null)}><X size={18} /></button><small>{selectedItem.status}</small><h3>{selectedItem.title}</h3><p>{selectedItem.hook || selectedItem.problem}</p>{selectedItem.format && <p><b>الصيغة:</b> {selectedItem.format}</p>}<code>{selectedItem.sourceRef}</code></aside>}
+  </div>
+}
+
 function AddAgent({ onClose, onSubmit }) {
   const [name, setName] = useState('')
   const [department, setDepartment] = useState('العمليات')
@@ -183,7 +255,20 @@ function App() {
   const [view, setView] = useState('map')
   const [modalOpen, setModalOpen] = useState(false)
   const [navOpen, setNavOpen] = useState(false)
+  const [section, setSection] = useState('room')
+  const { data: liveData, status: liveStatus, error: liveError, refresh: refreshLive } = useLiveState()
   const selectedAgent = useMemo(() => agents.find(agent => agent.id === selected), [agents, selected])
+
+  useEffect(() => {
+    if (!liveData) return
+    setAgents(current => current.map(agent => {
+      if (agent.id === 'noura') return { ...agent, task: liveData.tasks.find(task => task.owner === 'نورة')?.title || agent.task, status: `${liveData.summary.readyForReview} أفكار للمراجعة`, progress: Math.min(100, liveData.summary.readyForReview * 20 + 20) }
+      if (agent.id === 'fahad') return { ...agent, task: liveData.approvals.find(item => item.owner === 'فهد')?.title || agent.task, status: `${liveData.approvals.filter(item => item.owner === 'فهد').length} قرار مطلوب` }
+      if (agent.id === 'researcher') return { ...agent, task: `تتوفر ${liveData.summary.ideas} فرص محتوى موثقة`, status: relativeTime(liveData.sourceUpdatedAt) }
+      if (agent.id === 'memory') return { ...agent, status: `${liveData.sources.filter(item => item.status === 'متصل').length} مصادر متصلة` }
+      return agent
+    }))
+  }, [liveData?.generatedAt])
 
   const addAgent = (name, department) => {
     const agent = {
@@ -209,19 +294,21 @@ function App() {
     </header>
 
     <nav className={`side-tabs ${navOpen ? 'open' : ''}`}>
-      {navigation.map(([label, Icon], index) => <button className={index === 0 ? 'active' : ''} key={label} onClick={() => setNavOpen(false)}><i /><Icon size={24} strokeWidth={1.55} /><span>{label}</span></button>)}
+      {navigation.map(({ id, label, icon: Icon }) => <button className={section === id ? 'active' : ''} key={id} onClick={() => { setSection(id); setNavOpen(false); if (id === 'agents') setView('list') }}><i /><Icon size={24} strokeWidth={1.55} /><span>{label}</span>{id === 'live' && liveData?.summary.pendingApprovals > 0 && <b>{liveData.summary.pendingApprovals}</b>}</button>)}
     </nav>
 
     <section className="room-stage">
-      <ProjectSeal />
-      {view === 'map' ? <div className="agent-map">
+      <ProjectSeal live={liveData} status={liveStatus} onRefresh={refreshLive} />
+      {(section === 'room' || section === 'agents') && (view === 'map' && section !== 'agents' ? <div className="agent-map">
         <RelationshipLines />
         {agents.map(agent => <Agent key={agent.id} agent={agent} active={selected === agent.id} onSelect={setSelected} />)}
-      </div> : <ListView agents={agents} selected={selected} onSelect={setSelected} />}
-      {selectedAgent && <Inspector agent={selectedAgent} agents={agents} onClose={() => setSelected(null)} />}
-      <div className="activity-board">
-        {activities.map(({ text, time, icon: Icon }) => <article key={text}><i className="card-pin" /><Icon size={35} strokeWidth={1.4} /><span><b>{text}</b><small>{time}</small></span></article>)}
-      </div>
+      </div> : <ListView agents={agents} selected={selected} onSelect={setSelected} />)}
+      {(section === 'room' || section === 'agents') && selectedAgent && <Inspector agent={selectedAgent} agents={agents} onClose={() => setSelected(null)} />}
+      {(section === 'live' || section === 'tasks' || section === 'memory') && <LiveDesk data={liveData} section={section} />}
+      {liveError && <div className="sync-error">آخر لقطة محفوظة · تعذر الاتصال المباشر: {liveError}</div>}
+      {section === 'room' && <div className="activity-board">
+        {(liveData?.activities || []).slice(0, 3).map(item => <article key={item.id}><i className="card-pin" /><FileText size={35} strokeWidth={1.4} /><span><b>{item.title}</b><small>{relativeTime(item.occurredAt)} · {item.actor}</small></span></article>)}
+      </div>}
     </section>
 
     {modalOpen && <AddAgent onClose={() => setModalOpen(false)} onSubmit={addAgent} />}

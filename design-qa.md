@@ -63,6 +63,12 @@ Text, dynamic values, and standard semantic icons remain code-native so the room
 
 - Production build: passed.
 - Browser/IAB render: passed.
+- Live workspace endpoint: passed (`/api/live-state`, refreshed every 20 seconds).
+- Live marketing feed: 10 sourced ideas; 3 ready for review.
+- Project development feed: 3 sourced improvement proposals.
+- Tasks and approvals: 3 active tasks; 4 pending approvals.
+- Connected memory: 4 source files with dates and source references.
+- Live view screenshot: `design/company-os-live-room-render.png`.
 - List view: 4 agents.
 - Add agent: “وكيل العمليات” created and inherited “عقار أوب”.
 - Mobile 390×844: no horizontal overflow.

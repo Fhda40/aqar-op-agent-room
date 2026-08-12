@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "tenantId": "company-os",
+  "generatedAt": "2026-08-12T14:46:09.614Z",
+  "sourceUpdatedAt": "2026-08-12T12:23:11.632Z",
+  "project": {
+    "id": "aqar-op",
+    "name": "عقار أوب",
+    "status": "نشط",
+    "stage": "Marketing Demo / Pre-Production"
+  },
+  "summary": {
+    "ideas": 10,
+    "readyForReview": 3,
+    "activeTasks": 3,
+    "drafts": 4,
+    "pendingApprovals": 4
+  },
+  "ideas": [
+    {
+      "id": "idea-1",
+      "rank": 1,
+      "title": "قبل أن تنشر الإعلان: فحص 60 ثانية قد يحمي مكتبك",
+      "hook": "هل يظهر اسم المرخص ورقم الترخيص في كل إعلان يخرج من مكتبك؟",
+      "problem": "تعدد الموظفين والقنوات يجعل مراجعة بيانات الإعلان وترخيصه عرضة للسهو، بينما شملت رقابة يونيو 2026 تدقيقات ميدانية وإلكترونية ورصدت، ضمن المخالفات، عدم بيان اسم المرخص أو رقم الترخيص وعدم التحقق الكافي من معلومات المالك.",
+      "format": "Carousel على LinkedIn وX، ثم نسخة قصيرة قابلة للحفظ.",
+      "cta": "«إذا كان مكتبك ينشر عبر أكثر من موظف، اطلب تجربة عقار أوب واذكر عدد الموظفين والقنوات التي تديرونها.»",
+      "status": "جاهزة للمراجعة",
+      "owner": "باحث المحتوى",
+      "approver": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md",
+      "confidence": 0.94
+    },
+    {
+      "id": "idea-2",
+      "rank": 2,
+      "title": "عقدك ينتهي قريبًا… هل تعرفه قبل أن يتصل بك المالك؟",
+      "hook": "المكتب المنظم لا يكتشف انتهاء العقد من رسالة المالك.",
+      "problem": "العقود القريبة من الانتهاء تتوزع بين ملفات ورسائل، فيتحول التجديد من فرصة استباقية إلى متابعة طارئة.",
+      "format": "فيديو 30–45 ثانية مع نص مرافق، أو Carousel «قبل 30/15/7 يومًا».",
+      "cta": "«كم عقدًا تتابعونه شهريًا؟ أرسل العدد وطريقتكم الحالية لنحدد إن كانت تجربة عقار أوب مناسبة.»",
+      "status": "جاهزة للمراجعة",
+      "owner": "باحث المحتوى",
+      "approver": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md",
+      "confidence": 0.94
+    },
+    {
+      "id": "idea-3",
+      "rank": 3,
+      "title": "التحصيل ليس «أرسلت له واتساب»",
+      "hook": "بين «الدفعة مستحقة» و«تم التحصيل» توجد عملية كاملة؛ هل هي ظاهرة لمدير المكتب؟",
+      "problem": "المتابعة اليدوية لا تُظهر بوضوح المستحق، والمتأخر، ومن تواصل، وما الإجراء التالي.",
+      "format": "مخطط بصري على LinkedIn/X، يتبعه سؤال تشخيصي.",
+      "cta": "«اطلب مراجعة تشغيل مدتها 15 دقيقة، وأخبرنا: كم وحدة وكم دفعة متأخرة تراجعونها يدويًا؟»",
+      "status": "جاهزة للمراجعة",
+      "owner": "باحث المحتوى",
+      "approver": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md",
+      "confidence": 0.94
+    },
+    {
+      "id": "idea-4",
+      "rank": 4,
+      "title": "نزاع الضمان يبدأ غالبًا من يوم الاستلام، لا يوم الخروج",
+      "hook": "إذا لم توثّق حالة الوحدة في البداية، ماذا ستقارن عند النهاية؟",
+      "problem": "غياب مرجع واضح لحالة الوحدة يرفع احتمال الخلاف عند التسليم وتوزيع مبلغ الضمان.",
+      "format": "Carousel تعليمي من 4 شرائح أو فيديو تمثيلي قصير دون بيانات حقيقية.",
+      "cta": "«هل لديكم قائمة موحدة للاستلام والتسليم؟ اطلب قالب التشغيل ضمن عرض عقار أوب التجريبي.»",
+      "status": "بحث موثق",
+      "owner": "باحث المحتوى",
+      "approver": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md",
+      "confidence": 0.94
+    },
+    {
+      "id": "idea-5",
+      "rank": 5,
+      "title": "لماذا يُرفض طلب تسويق وحدة شاغرة؟",
+      "hook": "صورة غير حقيقية، موقع غير دقيق، أو سعر غير منطقي قد يعيد طلبك قبل أن يصل للمستأجر.",
+      "problem": "إعادة العمل على إعلان ناقص تبطئ إشغال الوحدة وتستهلك وقت الموظف.",
+      "format": "صورة واحدة قابلة للحفظ + Thread يشرح أسباب الرفض.",
+      "cta": "«إذا تديرون 10 وحدات شاغرة أو أكثر، اطلبوا تجربة عقار أوب لتنظيم رحلة الإعلان والمتابعة.»",
+      "status": "بحث موثق",
+      "owner": "باحث المحتوى",
+      "approver": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md",
+      "confidence": 0.94
+    },
+    {
+      "id": "idea-6",
+      "rank": 6,
+      "title": "1.1 مليون عقد وساطة: المنافسة القادمة على جودة التشغيل",
+      "hook": "عندما يتجاوز السوق 1.1 مليون عقد وساطة، لا يكفي أن تكون مرخصًا؛ يجب أن تكون أسرع وأوضح.",
+      "problem": "نمو السوق يرفع توقعات العميل، بينما المكتب الذي لا يضبط المسؤوليات والتقارير يظل معتمدًا على ذاكرة الأفراد.",
+      "format": "منشور LinkedIn تحليلي مع Infographic للأرقام الثلاثة.",
+      "cta": "«إذا كان تقرير المالك يعتمد على سؤال الموظفين واحدًا واحدًا، احجز عرضًا وأخبرنا بعدد الوحدات تحت الإدارة.»",
+      "status": "بحث موثق",
+      "owner": "باحث المحتوى",
+      "approver": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md",
+      "confidence": 0.94
+    },
+    {
+      "id": "idea-7",
+      "rank": 7,
+      "title": "باع المالك العقار… ماذا يحدث للعقود والدفعات المعلقة؟",
+      "hook": "انتقال الملكية ليس مجرد تغيير اسم في ملف Excel.",
+      "problem": "عند تغير المالك أو ممثله، يجب أن تتسق الوثائق والموافقات والإشعارات والعقود والدفعات المعلقة؛ والمتابعة المجزأة تزيد احتمالات النسيان.",
+      "format": "Carousel «رحلة انتقال الملكية» أو فيديو Whiteboard.",
+      "cta": "«هل لدى مكتبك إجراء مكتوب لهذه الحالة؟ اطلب جلسة تشخيص لعقار أوب.»",
+      "status": "بحث موثق",
+      "owner": "باحث المحتوى",
+      "approver": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md",
+      "confidence": 0.94
+    },
+    {
+      "id": "idea-8",
+      "rank": 8,
+      "title": "هل تسعّر بالانطباع أم ببيانات العقود الموثقة؟",
+      "hook": "«هذا سعر الحي» ليست إجابة مهنية ما لم تستند إلى بيانات واضحة.",
+      "problem": "التسعير القائم على الانطباع قد يضعف ثقة المالك ويطيل شغور الوحدة.",
+      "format": "Carousel «3 أرقام قبل أن تقترح السعر» مع مثال افتراضي مُعلّم بوضوح.",
+      "cta": "«اطلب نموذج تقرير المالك، واذكر المدينة ونوع الوحدات التي تديرها.»",
+      "status": "بحث موثق",
+      "owner": "باحث المحتوى",
+      "approver": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md",
+      "confidence": 0.94
+    },
+    {
+      "id": "idea-9",
+      "rank": 9,
+      "title": "رخصة فال هي البداية؛ نضج الفريق هو الفارق",
+      "hook": "الترخيص يفتح الباب، لكن جودة الفريق هي التي تُبقي العميل.",
+      "problem": "المعرفة النظامية والتشغيلية تتفاوت بين أعضاء المكتب، ما ينعكس على جودة التنفيذ وتجربة المستفيد.",
+      "format": "LinkedIn مقال قصير + استطلاع «ما أصعب جانب في تأهيل الفريق؟».",
+      "cta": "«إذا كان نمو الفريق يجعل متابعة الجودة أصعب، اطلب عرض عقار أوب لإدارة المسؤوليات والمتابعة.»",
+      "status": "بحث موثق",
+      "owner": "باحث المحتوى",
+      "approver": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md",
+      "confidence": 0.94
+    },
+    {
+      "id": "idea-10",
+      "rank": 10,
+      "title": "تقرير المالك: من «وش صار؟» إلى ملخص جاهز كل أسبوع",
+      "hook": "أفضل تقرير للمالك هو الذي لا يحتاج أن تجمعه من خمس محادثات.",
+      "problem": "حتى مع توثيق العقود والدفعات في المنصات الرسمية، تظل الملاحظات والصيانة والمسؤوليات والتواصل الداخلي موزعة، فيتأخر التقرير أو يصبح ناقصًا.",
+      "format": "فيديو Demo من 45–60 ثانية أو صورة «قبل/بعد» ببيانات وهمية.",
+      "cta": "«أرسل كلمة “تقرير” مع عدد الملاك والوحدات؛ نختار مكتبًا مناسبًا لتجربة مغلقة.»",
+      "status": "بحث موثق",
+      "owner": "باحث المحتوى",
+      "approver": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md",
+      "confidence": 0.94
+    }
+  ],
+  "developmentIdeas": [
+    {
+      "id": "dev-live-database",
+      "title": "نقل الحالة التشغيلية إلى PostgreSQL مع RLS",
+      "problem": "الحالة الحالية موزعة بين ملفات المشروع ولا توجد قاعدة تشغيل مشتركة للمهمات والموافقات.",
+      "impact": "تحديث فوري متعدد المشاريع مع عزل البيانات وسجل تدقيق.",
+      "status": "مقترح معماري",
+      "owner": "فهد",
+      "approver": "فهد",
+      "sourceRef": "docs/02-ARCHITECTURE.md",
+      "confidence": 1
+    },
+    {
+      "id": "dev-buffer-reverse-sync",
+      "title": "إضافة مزامنة عكسية لحالة Buffer ونتائج النشر",
+      "problem": "الحالة والأداء يحتاجان تحديثًا يدويًا بعد إرسال الأفكار.",
+      "impact": "عرض المنشور والنتيجة داخل الغرفة دون نسخ يدوي.",
+      "status": "فجوة مسجلة",
+      "owner": "نورة",
+      "approver": "فهد",
+      "sourceRef": "mkt/reports/STATUS.md",
+      "confidence": 1
+    },
+    {
+      "id": "dev-approval-audit",
+      "title": "بوابة موافقات مرتبطة بسجل تدقيق",
+      "problem": "الاعتمادات تظهر في الملفات لكن لا توجد دورة حياة تشغيلية موحدة داخل الواجهة.",
+      "impact": "تتبع من وافق ومتى وعلى ماذا قبل أي نشر أو قرار مؤثر.",
+      "status": "مطلوب في المعمارية",
+      "owner": "فهد",
+      "approver": "فهد",
+      "sourceRef": "docs/04-AGENTS.md",
+      "confidence": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "title": "اختبار رسالة «كل متابعة تظهر قبل أن تُطلب».",
+      "status": "قيد التنفيذ",
+      "owner": "نورة",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/reports/STATUS.md",
+      "confidence": 1
+    },
+    {
+      "id": "task-2",
+      "title": "جمع أول بيانات أداء فعلية للمنشورات.",
+      "status": "مفتوحة",
+      "owner": "فهد",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/reports/STATUS.md",
+      "confidence": 1
+    },
+    {
+      "id": "task-3",
+      "title": "استقطاب أول طلبات تجربة مؤهلة.",
+      "status": "مفتوحة",
+      "owner": "فهد",
+      "projectId": "aqar-op",
+      "sourceRef": "mkt/reports/STATUS.md",
+      "confidence": 1
+    }
+  ],
+  "risks": [
+    {
+      "id": "risk-1",
+      "title": "لا توجد مزامنة عكسية من Buffer؛ حالة النشر والأداء تحتاج تحديثًا يدويًا.",
+      "severity": "متوسط",
+      "sourceRef": "mkt/reports/STATUS.md"
+    },
+    {
+      "id": "risk-2",
+      "title": "المنتج يُعرض كتجربة مغلقة، ولا يجوز وصفه كمنصة إنتاجية مكتملة.",
+      "severity": "منخفض",
+      "sourceRef": "mkt/reports/STATUS.md"
+    }
+  ],
+  "approvals": [
+    {
+      "id": "approval-closed-beta",
+      "title": "تثبيت أولوية التجربة المغلقة على مكتب واحد",
+      "status": "بانتظار فهد",
+      "owner": "فهد",
+      "sourceRef": "mkt/reports/STATUS.md"
+    },
+    {
+      "id": "approval-idea-1",
+      "title": "قبل أن تنشر الإعلان: فحص 60 ثانية قد يحمي مكتبك",
+      "status": "بانتظار نورة",
+      "owner": "نورة",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md"
+    },
+    {
+      "id": "approval-idea-2",
+      "title": "عقدك ينتهي قريبًا… هل تعرفه قبل أن يتصل بك المالك؟",
+      "status": "بانتظار نورة",
+      "owner": "نورة",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md"
+    },
+    {
+      "id": "approval-idea-3",
+      "title": "التحصيل ليس «أرسلت له واتساب»",
+      "status": "بانتظار نورة",
+      "owner": "نورة",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md"
+    }
+  ],
+  "activities": [
+    {
+      "id": "report-2026-08-12-company-os-live-room.md",
+      "type": "report",
+      "title": "تقرير تنفيذ — غرفة Company OS الحية",
+      "actor": "نورة",
+      "target": "فهد",
+      "occurredAt": "2026-08-12T14:46:03.949Z",
+      "sourceRef": "pm/inbox/marketing/2026-08-12-company-os-live-room.md"
+    },
+    {
+      "id": "report-2026-08-12-company-os-room-asset-rebuild.md",
+      "type": "report",
+      "title": "تقرير تصحيح التطابق البصري لغرفة Company OS",
+      "actor": "نورة",
+      "target": "فهد",
+      "occurredAt": "2026-08-12T14:28:54.421Z",
+      "sourceRef": "pm/inbox/marketing/2026-08-12-company-os-room-asset-rebuild.md"
+    },
+    {
+      "id": "report-2026-08-12-company-os-room-rebuild.md",
+      "type": "report",
+      "title": "تقرير إعادة بناء غرفة Company OS",
+      "actor": "نورة",
+      "target": "فهد",
+      "occurredAt": "2026-08-12T14:03:11.752Z",
+      "sourceRef": "pm/inbox/marketing/2026-08-12-company-os-room-rebuild.md"
+    },
+    {
+      "id": "report-2026-08-12-agent-room-video-deployment.md",
+      "type": "report",
+      "title": "تقرير تنفيذ ونشر غرفة وكلاء عقار أوب",
+      "actor": "نورة",
+      "target": "فهد",
+      "occurredAt": "2026-08-12T13:40:57.146Z",
+      "sourceRef": "pm/inbox/marketing/2026-08-12-agent-room-video-deployment.md"
+    },
+    {
+      "id": "report-2026-08-12-agent-names.md",
+      "type": "report",
+      "title": "إشعار فوري إلى مدير المشروع — اعتماد أسماء الوكلاء",
+      "actor": "نورة",
+      "target": "فهد",
+      "occurredAt": "2026-08-12T13:24:04.651Z",
+      "sourceRef": "pm/inbox/marketing/2026-08-12-agent-names.md"
+    },
+    {
+      "id": "activity-research",
+      "type": "idea",
+      "title": "تتوفر 10 فرص محتوى موثقة",
+      "actor": "باحث المحتوى",
+      "occurredAt": "2026-08-12T12:23:11.632Z",
+      "sourceRef": "mkt/research/content-opportunities-2026-08-12.md"
+    },
+    {
+      "id": "activity-drafts",
+      "type": "draft",
+      "title": "تتوفر 4 مسودات للأسبوع الأول",
+      "actor": "نورة",
+      "occurredAt": "2026-08-12T12:16:49.974Z",
+      "sourceRef": "mkt/drafts/week-01-2026-08-12.md"
+    }
+  ],
+  "sources": [
+    {
+      "id": "marketing-research",
+      "label": "فرص المحتوى",
+      "path": "mkt/research/content-opportunities-2026-08-12.md",
+      "updatedAt": "2026-08-12T12:23:11.632Z",
+      "status": "متصل"
+    },
+    {
+      "id": "marketing-status",
+      "label": "حالة التسويق",
+      "path": "mkt/reports/STATUS.md",
+      "updatedAt": "2026-08-12T12:20:19.203Z",
+      "status": "متصل"
+    },
+    {
+      "id": "marketing-drafts",
+      "label": "مسودات الأسبوع الأول",
+      "path": "mkt/drafts/week-01-2026-08-12.md",
+      "updatedAt": "2026-08-12T12:16:49.974Z",
+      "status": "متصل"
+    },
+    {
+      "id": "pm-reports",
+      "label": "تقارير مدير المشروع",
+      "path": "pm/inbox/marketing/",
+      "updatedAt": "2026-08-12T14:46:03.949Z",
+      "status": "متصل"
+    }
+  ]
+}
